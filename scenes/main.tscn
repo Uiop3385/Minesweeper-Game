@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5j5l0ct8txk"]
+
+[ext_resource type="PackedScene" uid="uid://c1bqt85ymbx0u" path="res://scenes/ui/screen_switcher.tscn" id="1_0gyj1"]
+[ext_resource type="PackedScene" uid="uid://b5vcychpeb8gh" path="res://scenes/minesweeper.tscn" id="1_3ud1g"]
+[ext_resource type="PackedScene" uid="uid://b3eff3kixsljc" path="res://scenes/ui/settings_tab.tscn" id="3_ynfpi"]
+[ext_resource type="PackedScene" uid="uid://gj3hxmmel3ae" path="res://scenes/ui/music_tab.tscn" id="4_6qgtt"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Messages" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenSwitcher" parent="." instance=ExtResource("1_0gyj1")]
+
+[node name="Minesweeper" parent="ScreenSwitcher/CanvasLayer/BetterTabContainer" index="0" instance=ExtResource("1_3ud1g")]
+layout_mode = 2
+
+[node name="SubViewport" parent="ScreenSwitcher/CanvasLayer/BetterTabContainer/Minesweeper/SubViewportContainer" index="0"]
+size = Vector2i(2, 2)
+
+[node name="SettingsTab" parent="ScreenSwitcher/CanvasLayer/BetterTabContainer" index="1" instance=ExtResource("3_ynfpi")]
+layout_mode = 2
+
+[node name="MusicTab" parent="ScreenSwitcher/CanvasLayer/BetterTabContainer" index="2" instance=ExtResource("4_6qgtt")]
+layout_mode = 2
+
+[connection signal="text_submitted" from="ScreenSwitcher/CanvasLayer/BetterTabContainer/SettingsTab/ScrollContainer/MarginContainer/VBoxContainer/LineEdit" to="ScreenSwitcher/CanvasLayer/BetterTabContainer/Minesweeper" method="_on_line_edit_text_submitted"]
+[connection signal="text_submitted" from="ScreenSwitcher/CanvasLayer/BetterTabContainer/SettingsTab/ScrollContainer/MarginContainer/VBoxContainer/LineEdit2" to="ScreenSwitcher/CanvasLayer/BetterTabContainer/Minesweeper" method="_on_line_edit_2_text_submitted"]
+[connection signal="button_down" from="ScreenSwitcher/CanvasLayer/BetterTabContainer/SettingsTab/ScrollContainer/MarginContainer/VBoxContainer/Button" to="ScreenSwitcher/CanvasLayer/BetterTabContainer/Minesweeper" method="_on_array_display_updater_button_down"]
+[connection signal="button_down" from="ScreenSwitcher/CanvasLayer/BetterTabContainer/SettingsTab/ScrollContainer/MarginContainer/VBoxContainer/Button2" to="ScreenSwitcher/CanvasLayer/BetterTabContainer/Minesweeper" method="_on_hint_button_down"]
+
+[editable path="ScreenSwitcher"]
+[editable path="ScreenSwitcher/CanvasLayer/BetterTabContainer/Minesweeper"]
+[editable path="ScreenSwitcher/CanvasLayer/BetterTabContainer/SettingsTab"]
+[editable path="ScreenSwitcher/CanvasLayer/BottomPanel"]

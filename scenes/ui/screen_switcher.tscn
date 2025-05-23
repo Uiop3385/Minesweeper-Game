@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1bqt85ymbx0u"]
+
+[ext_resource type="Script" path="res://addons/BetterTabContainer/BetterTabContainer.gd" id="1_7ixen"]
+[ext_resource type="Script" path="res://scripts/screen_switcher.gd" id="1_r6gww"]
+[ext_resource type="PackedScene" uid="uid://pj5cf4mc131c" path="res://scenes/ui/bottom_panel.tscn" id="2_iys11"]
+
+[node name="ScreenSwitcher" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("1_r6gww")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BetterTabContainer" type="ScrollContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("1_7ixen")
+
+[node name="BottomPanel" parent="CanvasLayer" instance=ExtResource("2_iys11")]
+
+[connection signal="tab_switched" from="CanvasLayer/BetterTabContainer" to="." method="_on_better_tab_container_tab_switched"]
+
+[editable path="CanvasLayer/BottomPanel"]

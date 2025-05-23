@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://pj5cf4mc131c"]
+
+[ext_resource type="Texture2D" uid="uid://dqcoasfqqnega" path="res://sprites/ui/icons/Land Mine On.svg" id="1_g58bw"]
+[ext_resource type="Theme" uid="uid://bch3khihiqehn" path="res://theme/light_blue.tres" id="1_smbd5"]
+[ext_resource type="Script" path="res://scripts/bottom_panel_button.gd" id="2_3f0cs"]
+[ext_resource type="Texture2D" uid="uid://y07aod48wgd" path="res://sprites/ui/icons/Gears.svg" id="2_y10k1"]
+[ext_resource type="Texture2D" uid="uid://ts5x4fxub1ct" path="res://sprites/ui/icons/Music note list.svg" id="4_m2nvc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eewnm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_viuao"]
+
+[node name="BottomPanel" type="Control"]
+layout_mode = 3
+anchor_top = 0.867
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.640137
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_smbd5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.00012207
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="0" type="Button" parent="ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eewnm")
+icon = ExtResource("1_g58bw")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_3f0cs")
+
+[node name="1" type="Button" parent="ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_viuao")
+icon = ExtResource("2_y10k1")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_3f0cs")
+
+[node name="2" type="Button" parent="ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_viuao")
+icon = ExtResource("4_m2nvc")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_3f0cs")

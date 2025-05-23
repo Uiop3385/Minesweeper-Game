@@ -1,0 +1,31 @@
+[gd_scene load_steps=16 format=3 uid="uid://sdk4u3jusap6"]
+
+[ext_resource type="Texture2D" uid="uid://v1b5rcpa81dn" path="res://sprites/tile_covered.png" id="1_plydo"]
+[ext_resource type="Script" path="res://scripts/tile.gd" id="2_hgymj"]
+[ext_resource type="Texture2D" uid="uid://dokvma3vc7ua7" path="res://sprites/tile_1.png" id="3_7rtwo"]
+[ext_resource type="Texture2D" uid="uid://bh411omy1rxth" path="res://sprites/tile_2.png" id="4_5k6lb"]
+[ext_resource type="Texture2D" uid="uid://cpq8wlwk2hkus" path="res://sprites/tile_3.png" id="5_pxnb4"]
+[ext_resource type="Texture2D" uid="uid://b2sw81ai2etoq" path="res://sprites/tile_4.png" id="6_rgtju"]
+[ext_resource type="Texture2D" uid="uid://dj11jqa5mgblc" path="res://sprites/tile_5.png" id="7_jbd3r"]
+[ext_resource type="Texture2D" uid="uid://u5ygjfo0h4xm" path="res://sprites/tile_6.png" id="8_x7hbb"]
+[ext_resource type="Texture2D" uid="uid://b008lg8t0q7xg" path="res://sprites/tile_7.png" id="9_amwd4"]
+[ext_resource type="Texture2D" uid="uid://6r6id10bsi1r" path="res://sprites/tile_8.png" id="10_0e5xh"]
+[ext_resource type="Texture2D" uid="uid://8ii5km8mhtys" path="res://sprites/tile_flag.png" id="11_7bdk2"]
+[ext_resource type="Texture2D" uid="uid://ckf7mfvlunqq" path="res://sprites/tile_mine.png" id="12_rqgbc"]
+[ext_resource type="Texture2D" uid="uid://b60j4vxx04l3j" path="res://sprites/tile_mine_clicked.png" id="13_x7p0v"]
+[ext_resource type="Texture2D" uid="uid://drkp4ao4anxm7" path="res://sprites/tile_mine_incorrect.png" id="14_cimlv"]
+[ext_resource type="Texture2D" uid="uid://cgl8o8samtb7r" path="res://sprites/tile_uncovered.png" id="15_7apsx"]
+
+[node name="Tile" type="TextureButton" groups=["tiles"]]
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+mouse_filter = 1
+texture_normal = ExtResource("1_plydo")
+stretch_mode = 0
+script = ExtResource("2_hgymj")
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("tile_1", "tile_2", "tile_3", "tile_4", "tile_5", "tile_6", "tile_7", "tile_8", "tile_covered", "tile_flag", "tile_mine", "tile_mine_clicked", "tile_mine_incorrect", "tile_uncovered"), [ExtResource("3_7rtwo"), ExtResource("4_5k6lb"), ExtResource("5_pxnb4"), ExtResource("6_rgtju"), ExtResource("7_jbd3r"), ExtResource("8_x7hbb"), ExtResource("9_amwd4"), ExtResource("10_0e5xh"), ExtResource("1_plydo"), ExtResource("11_7bdk2"), ExtResource("12_rqgbc"), ExtResource("13_x7p0v"), ExtResource("14_cimlv"), ExtResource("15_7apsx")]]
+
+[connection signal="gui_input" from="." to="." method="_on_tile_pressed"]

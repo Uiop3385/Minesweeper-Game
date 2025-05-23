@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5vcychpeb8gh"]
+
+[ext_resource type="Script" path="res://scripts/minesweeper.gd" id="1_5do3j"]
+[ext_resource type="PackedScene" path="res://addons/Touch Input Manager/GCC2D/GCC2D.tscn" id="2_w4ep6"]
+[ext_resource type="Theme" uid="uid://bch3khihiqehn" path="res://theme/light_blue.tres" id="3_5gv47"]
+
+[node name="Minesweeper" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5do3j")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00392157, 0.184314, 0.352941, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1080, 1920)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="GCC2D" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_w4ep6")]
+anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+MAX_ZOOM = 2.0
+MIN_ZOOM = 0.25
+rotation_gesture = 0
+movement_gesture = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.817
+anchor_bottom = 0.817
+offset_top = -96.64
+offset_right = 512.0
+offset_bottom = 95.36
+grow_vertical = 2
+theme = ExtResource("3_5gv47")
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(256, 192)
+layout_mode = 2
+theme_override_font_sizes/font_size = 47
+toggle_mode = true
+text = "Dig Mode"
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(256, 192)
+layout_mode = 2
+theme_override_font_sizes/font_size = 43
+toggle_mode = true
+text = "Swiping
+Unlocked"
+icon_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="toggled" from="HBoxContainer/Button" to="." method="_on_flag_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/Button2" to="." method="_on_camera_lock_toggled"]
